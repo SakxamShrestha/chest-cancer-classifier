@@ -1,0 +1,50 @@
+cat > .gitignore << EOL
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+.env
+.venv
+venv/
+ENV/
+
+# Data and models (but not .dvc files)
+/data/*
+!/data/.gitkeep
+/models/*
+!/models/.gitkeep
+
+# IDE
+.vscode/
+.idea/
+
+# Jupyter
+.ipynb_checkpoints
+
+# AWS
+.aws/
+
+# Logs
+*.log
+
+# Don't ignore .dvc files
+!*.dvc
+!.dvcignore
+EOL
