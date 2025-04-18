@@ -1,0 +1,28 @@
+stages:
+  preprocess:
+    cmd: python src/data/preprocessing.py
+    deps:
+      - src/data/preprocessing.py
+      - data/raw
+    params:
+      - data.image_size
+      - data.train_split
+      - data.val_split
+      - data.test_split
+    outs:
+      - data/processed
+
+  train:
+    cmd: python src/training/train.py
+    deps:
+      - src/training/train.py
+      - src/models/model.py
+      - data/processed
+    params:
+      - model
+      - training
+    outs:
+      - models
+    metrics:
+      - metrics.json:
+          cache: false
