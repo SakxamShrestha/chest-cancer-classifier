@@ -1,0 +1,21 @@
+# requirements-web.txt
+
+# FastAPI backend requirements
+fastapi==0.109.1
+uvicorn==0.27.0
+python-multipart==0.0.7
+pydantic==2.6.0
+starlette==0.35.1
+httpx==0.26.0
+
+# Frontend development requirements (if needed)
+nodejs>=18.0.0
+npm>=9.0.0
+torch>=2.0.0
+torchvision>=0.15.0
+timm>=0.9.0
+Pillow>=10.0.0
+
+# Additional utilities
+python-jose==3.3.0  # For JWT tokens if you add authentication
+python-dotenv==1.0.0  # For environment variables

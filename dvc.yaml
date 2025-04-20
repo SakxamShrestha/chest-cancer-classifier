@@ -26,3 +26,12 @@ stages:
     metrics:
       - metrics.json:
           cache: false
+
+  serve: 
+    cmd: python -m src.web.backend.main
+    deps:
+      - src/web/backend
+      - models/best_model.pth
+    outs:
+      - logs/server.log
+

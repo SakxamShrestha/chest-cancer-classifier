@@ -1,3 +1,4 @@
+# configs/params.yaml
 data:
   image_size: 224
   batch_size: 32
@@ -8,7 +9,7 @@ data:
 model:
   architecture: "efficientnet_b0"
   pretrained: true
-  num_classes: 2
+  num_classes: 4
   dropout_rate: 0.3
 
 training:
@@ -19,10 +20,14 @@ training:
   scheduler_factor: 0.1
 
 paths:
-  raw_data: "data/raw"
-  processed_data: "data/processed"
+  data_dir: "../input/chest-ctscan-images/Data"
+  train_dir: "../input/chest-ctscan-images/Data/train"
+  val_dir: "../input/chest-ctscan-images/Data/valid"
+  test_dir: "../input/chest-ctscan-images/Data/test"
   model_dir: "models"
-  
-aws:
-  model_bucket: "chest-cancer-models"
-  data_bucket: "chest-cancer-data"
+
+class_names:
+  - "adenocarcinoma"
+  - "large.cell.carcinoma"
+  - "squamous.cell.carcinoma"
+  - "normal"

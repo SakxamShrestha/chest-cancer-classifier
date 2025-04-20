@@ -6,7 +6,7 @@ def calculate_metrics(y_true, y_pred):
     precision, recall, f1, _ = precision_recall_fscore_support(
         y_true,
         y_pred,
-        average='binary'
+        average='macro'
     )
     
     return {
