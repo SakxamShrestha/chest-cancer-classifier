@@ -51,3 +51,7 @@ out/
 .env.development.local
 .env.test.local
 .env.production.local
+
+# Add these lines to .gitignore
+data/raw/chest-ctscan-images.zip
+*.zip
