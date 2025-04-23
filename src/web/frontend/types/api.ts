@@ -5,7 +5,7 @@ export interface PredictionResponse {
     filename: string;
     prediction: string;
     confidence: number;
-    class_probabilities: {
+    probabilities: {
       [key: string]: number;
     };
     timestamp: string;

@@ -1,7 +1,6 @@
-# configs/params.yaml
 data:
   image_size: 224
-  batch_size: 32
+  batch_size: 16
   train_split: 0.8
   val_split: 0.1
   test_split: 0.1
@@ -13,18 +12,9 @@ model:
   dropout_rate: 0.3
 
 training:
-  epochs: 50
   learning_rate: 0.001
+  epochs: 50
   early_stopping_patience: 5
-  scheduler_patience: 2
-  scheduler_factor: 0.1
-
-paths:
-  data_dir: "../input/chest-ctscan-images/Data"
-  train_dir: "../input/chest-ctscan-images/Data/train"
-  val_dir: "../input/chest-ctscan-images/Data/valid"
-  test_dir: "../input/chest-ctscan-images/Data/test"
-  model_dir: "models"
 
 class_names:
   - "adenocarcinoma"

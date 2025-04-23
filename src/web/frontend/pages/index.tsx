@@ -21,7 +21,7 @@ export default function Home() {
     formData.append('file', file);
 
     try {
-      const response = await fetch(`${API_URL}/predict`, {
+      const response = await fetch(`${API_URL}/api/predict`, {
         method: 'POST',
         body: formData,
         headers: {

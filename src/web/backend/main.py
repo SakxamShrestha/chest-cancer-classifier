@@ -10,7 +10,7 @@ import io
 import logging
 import datetime
 from contextlib import asynccontextmanager
-from .model import PredictionPipeline
+from model import PredictionPipeline
 
 # Setup logging
 logging.basicConfig(level=logging.INFO)
@@ -29,7 +29,7 @@ async def lifespan(app: FastAPI):
     # Load model on startup
     global pipeline
     try:
-        model_path = os.path.join(project_root, "models", "best_model.pth")
+        model_path = os.path.join(project_root, "src", "models", "best_model.pth")
         
         # Check if model file exists
         if not os.path.exists(model_path):

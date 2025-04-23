@@ -1,4 +1,4 @@
-# src/web/backend/model.py
+# src/web/backend/app/routers/models/model.py
 import torch
 import torch.nn as nn
 import timm
@@ -6,6 +6,9 @@ from PIL import Image
 import torchvision.transforms as transforms
 import io
 import logging
+import yaml
+from pathlib import Path
+import os
 
 logger = logging.getLogger(__name__)
 
@@ -24,15 +27,38 @@ class ChestCancerClassifier(nn.Module):
 
 class PredictionPipeline:
     def __init__(self, model_path, device=None):
+        # Get the absolute path to the project root
+        current_file = Path(__file__).resolve()
+        # Go up the directory tree until we find the project root (where configs/ exists)
+        project_root = current_file
+        while project_root.name != "ml-final-project" and project_root.parent != project_root:
+            project_root = project_root.parent
+            
+        config_path = project_root / "configs" / "params.yaml"
+        
+        logger.info(f"Project root: {project_root}")
+        logger.info(f"Looking for config at: {config_path}")
+        logger.info(f"Config exists: {config_path.exists()}")
+        
+        # Load config
+        try:
+            with open(config_path) as f:
+                params = yaml.safe_load(f)
+        except FileNotFoundError:
+            logger.error(f"Config file not found at {config_path}")
+            logger.error(f"Current working directory: {Path.cwd()}")
+            logger.error(f"Available files in project root: {list(project_root.glob('*'))}")
+            raise
+        
+        # Initialize class names from config
+        self.class_names = params['class_names']
+        
+        # Set device
         self.device = device if device else torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        
+        # Load model
         self.model = self._load_model(model_path)
         self.transform = self._get_transforms()
-        self.class_names = [
-            "adenocarcinoma",
-            "large.cell.carcinoma",
-            "squamous.cell.carcinoma",
-            "normal"
-        ]
     
     def _load_model(self, model_path):
         try:

@@ -51,29 +51,25 @@ export const Prediction: React.FC<PredictionProps> = ({ prediction, isLoading })
           <Text fontWeight="bold" mb={2}>
             Confidence Scores:
           </Text>
-          {Object.entries(prediction.class_probabilities).map(([className, probability]) => (
+          {Object.entries(prediction.probabilities).map(([className, probability]) => (
             <Box key={className} mb={2}>
               <Text fontSize="sm" mb={1}>
                 {className}
               </Text>
               <Box display="flex" alignItems="center">
                 <Progress
-                  value={probability}
+                  value={probability * 100}
                   colorScheme={className === prediction.prediction ? "green" : "gray"}
                   width="100%"
                   mr={2}
                 />
                 <Text fontSize="sm" width="60px">
-                  {probability.toFixed(1)}%
+                  {(probability * 100).toFixed(1)}%
                 </Text>
               </Box>
             </Box>
           ))}
         </Box>
-
-        <Text fontSize="xs" color="gray.500" mt={2}>
-          Analyzed at: {new Date(prediction.timestamp).toLocaleString()}
-        </Text>
       </VStack>
     </Box>
   );
