@@ -1,7 +1,6 @@
 // src/web/frontend/pages/index.tsx
 import React, { useState } from 'react';
 import { Box, Grid, useToast } from '@chakra-ui/react';
-import { Layout } from '../components/Layout';
 import { ImageUpload } from '../components/ImageUpload';
 import { Prediction } from '../components/Prediction';
 import type { PredictionResponse } from '../types/api';
@@ -54,19 +53,17 @@ export default function Home() {
   };
 
   return (
-    <Layout>
-      <Grid
-        templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }}
-        gap={8}
-        width="100%"
-      >
-        <Box>
-          <ImageUpload onImageSelect={handleImageSelect} isLoading={isLoading} />
-        </Box>
-        <Box>
-          <Prediction prediction={prediction} isLoading={isLoading} />
-        </Box>
-      </Grid>
-    </Layout>
+    <Grid
+      templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }}
+      gap={8}
+      width="100%"
+    >
+      <Box>
+        <ImageUpload onImageSelect={handleImageSelect} isLoading={isLoading} />
+      </Box>
+      <Box>
+        <Prediction prediction={prediction} isLoading={isLoading} />
+      </Box>
+    </Grid>
   );
 }
